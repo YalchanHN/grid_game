@@ -1,1 +1,1 @@
-# grid_game
+Console application, which simulate a grid game. Every cell on the grid can be either red, which is represent by 0, and green, which is represent by 1. The main task is to generate new tables according to set rules and find in how many generations specific cell wsa green.
