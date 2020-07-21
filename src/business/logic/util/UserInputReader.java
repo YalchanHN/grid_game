@@ -1,4 +1,4 @@
-package util;
+package business.logic.util;
 
 import java.util.Scanner;
 

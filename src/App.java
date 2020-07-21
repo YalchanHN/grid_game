@@ -1,8 +1,8 @@
 import business.logic.Game;
 import business.logic.GridGame;
 import business.logic.GridGenerationCreator;
-import util.UserInputReader;
-import util.UserInputValidator;
+import business.logic.util.UserInputReader;
+import business.logic.util.UserInputValidator;
 
 import java.util.Scanner;
 

@@ -1,0 +1,48 @@
+Project Analysis: The project must simulate game, which is played on 2D Grid.
+                  Every grid cell can be red, represent by 0, or green, represent by 1.
+
+Project Task: The task is generate new grid with different cell values according to 4 rules,
+              which are given by requirement, and to find count of generations, when specific cell was green.
+
+Project Structure: The project is divided into separate layers, as they are divided into packages for easier maintenance and readability.
+      - Data layer: Responsible for the data. Here is one package:
+          * model: It stores data transfer models;
+                ~ Cell - this class represents a cell in the grid. It has two properties for coordinates of cell and one more which saves it is color value.
+                ~ Grid - this class represents the grid. It has 2D array as property and its row size and column size.
+          * enums: It stores the types of cell colors;
+      - Business layer: It is responsible for logical operations. This logic is separated into three two classes and one interface
+                ~ Game - is interface, which is used for abstraction, in case when the game rules changes. It has only one method - startGame();
+                ~ GridGame - this class implements Game and it our main class which is responsible to start the game by specific rules.
+                            It uses some methods to fulfill the requirements, such as:
+                                printGrid() - which is used to print the grid
+                                getCountOfGreenGenerationsByCell(...) - which finds how many time the cell with given parameters was green in specific count generations, which also is given as a parameter.
+                                isCellGreen() - is check whether a cell value is green.
+                            And Overrides startGame() method:
+                                startGame() - this method is entry point of the game. It gets user input and validate it by calling specific classes. It creates the zero generation of the grid
+                                              and finds the number equal to how many times a cell was green in specific count of generations.
+                ~ GridGenerationCreator - has responsibilities to create generations of grid. It has five methods:
+                                createZeroGeneration() - creates generation zero of grid. It fills in the grid with random numbers
+                                createNextGeneration() - creates next generation grid by applying the rules of the requirement
+                                applyNewGenerationRulesOnCell() - it checks the value of the cell and applies the requirement rules on cell
+                                applyGreenCellRules() - applies green cell rules
+                                applyRedCellRules() - applies red cell rules
+                                getCellNeighbours() - method, which finds the neighbours of a cell
+            There is one more packet - util, which has classes responsible to get and validate user input
+                ~ UserInputReader - class, which is used to get the user input. It has three methods:
+                                readGridMeasurements() - reads grid measurements
+                                readCellCoordinates() - reads searching cell coordinates
+                                readCountGenerations() - reads count of new grid generations
+                ~ UserInputValidator - class, which validates user input. It has four methods for validation:
+                                areGridMeasurementsValid() - checks whether grid measurements are by requirements
+                                areCellCoordinatesValid() - checks whether cell coordinates are valid
+                                isCountGenerationsValid() - checks whether count new generations are valid
+                                isNumber() - checks whether string is number
+
+Execution: Execution starts from the entry point, which is the main method, which is located in the App class. An object of Game is created there
+           and its startGame() method is called. This method asks the user for input of grid measurements, cell coordinates,
+           and count of ne generations by using UserInputReader class's methods. Validate them by using UserInputValidator class's methods.
+           When the grid measurements is valid, object from class GridGenerationCreator creates generation zero by calling createZeroGeneration() method.
+           When it is created the print() method is calling and prints the grid. Next thing, which is executing after printing is to get user input about
+           searching cell coordinates and count of new generations and validating them. The count of generations, when a cell was green, is found by calling
+           getCountOfGreenGenerationsByCell() method, which creates new generation by calling GridGenerationCreator class's method createNextGeneration() and
+           calculate the count by specific rules. Finally the result is printed on the console.

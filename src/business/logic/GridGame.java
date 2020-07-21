@@ -2,7 +2,7 @@ package business.logic;
 
 import data.model.Grid;
 import data.model.enums.CellType;
-import util.UserInputReader;
+import business.logic.util.UserInputReader;
 
 public class GridGame implements Game {
     private Grid grid;

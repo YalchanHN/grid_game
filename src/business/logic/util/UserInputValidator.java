@@ -1,4 +1,4 @@
-package util;
+package business.logic.util;
 
 public class UserInputValidator {
 
